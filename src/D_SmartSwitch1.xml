@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+	<specVersion>
+		<major>1</major>
+		<minor>0</minor>
+	</specVersion>
+	<device>
+		<deviceType>urn:schemas-hugheaves-com:device:SmartSwitch:1</deviceType>
+		<handleChildren>1</handleChildren>
+		<friendlyName>SmartSwitch Plug-in</friendlyName>
+		<staticJson>D_SmartSwitch1.json</staticJson>
+		<serviceList>
+			<service>
+				<serviceType>urn:schemas-micasaverde-com:service:HaDevice:1</serviceType>
+				<serviceId>urn:micasaverde-com:serviceId:HaDevice1</serviceId>
+				<SCPDURL>S_HaDevice1.xml</SCPDURL>
+			</service>
+			<service>
+				<serviceType>urn:schemas-hugheaves-com:serviceId:SmartSwitch:1</serviceType>
+				<serviceId>urn:hugheaves-com:serviceId:SmartSwitch1</serviceId>
+				<SCPDURL>S_SmartSwitch1.xml</SCPDURL>
+			</service>
+		</serviceList>
+		<implementationList>
+			<implementationFile>I_SmartSwitch1.xml</implementationFile>
+		</implementationList>
+	</device>
+</root>

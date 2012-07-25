@@ -1,0 +1,164 @@
+{
+	"flashicon": "icons\/devices.swf",
+	"inScene": "0",
+	"DisplayStatus": {},
+	"doc_url": {
+		"doc_forced_url": {
+			"text": ""
+		}
+	},
+	"Tabs": [
+		{
+			"Label": {
+				"lang_tag": "control",
+				"text": "Control"
+			},
+			"Position": "0",
+			"TabType": "flash",
+			"SceneGroup": [
+				{
+					"id": 1,
+					"top": 1,
+					"left": 0,
+					"x": 2,
+					"y": 2
+				}
+			],
+			"ControlGroup": [
+				{
+					"id": 1,
+					"scenegroup": 1
+				},
+				{
+					"id": 2,
+					"scenegroup": 1,
+                    "isSingle": "1",
+				}
+			],
+			"Control": [
+				{
+					"ControlGroup": 1,
+					"ControlType": "label",
+					"Label": {
+						"lang_tag": "plugin_version",
+						"text": "Plugin version:"
+					},
+					"top": 0,
+					"left": 0,
+                    "x": 2,
+                    "text_align": "left",
+					"Display": {
+						"Top": 20,
+						"Left": 50,
+						"Width": 90,
+						"Height": 20
+					}
+				},
+				{
+					"ControlGroup": 1,
+					"ControlType": "variable",
+					"top": 0,
+					"left": 1,
+					"Display": {
+						"Service": "urn:micasaverde-com:serviceId:VistaAlarmPanel1",
+						"Variable": "PluginVersion",
+						"Top": 20,
+						"Left": 140,
+						"Width": 60,
+						"Height": 20
+					}
+				},
+				{
+					"ControlGroup": 2,
+					"ControlType": "button",
+					"Label": {
+						"lang_tag": "clear",
+						"text": "Clear"
+					},
+					"top": 1,
+					"left": 0,
+                    "x": 2,
+					"Display": {
+						"Top": 60,
+						"Left": 50,
+						"Width": 110,
+						"Height": 20
+					},
+					"Command": {
+						"Service": "urn:micasaverde-com:serviceId:VistaAlarmPanel1",
+						"Action": "ClearTask",
+						"Parameters": []
+					}
+				}
+			]
+		},
+		{
+			"Label": {
+                "lang_tag": "cheat_sheet",
+                "text": "Cheat Sheet"
+            },
+            "Position": "1",
+            "TabType": "javascript",
+            "ScriptName": "J_VistaAlarmPanel1.js",
+            "Function": "showCheatSheet"
+		},
+		{
+            "Label": {
+                "lang_tag": "settings",
+                "text": "Settings"
+            },
+            "Position": "2",
+            "TabType": "javascript",
+            "ScriptName": "shared.js",
+            "Function": "simple_device"
+        },
+		{
+			"Label": {
+				"lang_tag": "advanced",
+				"text": "Advanced"
+			},
+			"Position": "3",
+			"TabType": "javascript",
+			"ScriptName": "shared.js",
+			"Function": "advanced_device"
+		}
+	],
+	"eventList2": [
+		{
+			"id": 1,
+			"label": {
+				"lang_tag": "connection_down",
+				"text": "Connection down"
+			},
+			"serviceId": "urn:micasaverde-com:serviceId:VistaAlarmPanel1",
+			"argumentList" : [
+				{
+					"id": 1,
+					"dataType": "boolean",
+					"defaultValue": "0",
+					"allowedValueList" : [
+						{
+							"value": "1",
+							"HumanFriendlyText": {
+								"lang_tag": "connection_is_down",
+								"text": "_DEVICE_NAME_: Connection is DOWN"
+							}
+						},
+						{
+							"value": "0",
+							"HumanFriendlyText": {
+								"lang_tag": "connection_is_up",
+								"text": "_DEVICE_NAME_: Connection is UP"
+							}
+						}
+					],
+					"name": "ConnectionDown",
+					"comparisson": "=",
+					"prefix": {},
+					"suffix": {}
+				}
+			]
+		}
+	],
+	"DeviceType": "urn:schemas-micasaverde-com:device:VistaAlarmPanel:1"
+}
