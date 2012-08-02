@@ -24,12 +24,17 @@
 	</specVersion>
 	<serviceStateTable>
 		<stateVariable>
+			<name>DeviceId</name>
+			<sendEventsAttribute>no</sendEventsAttribute>
+			<dataType>ui1</dataType>
+		</stateVariable>
+		<stateVariable>
 			<name>LogLevel</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
 			<dataType>ui1</dataType>
 		</stateVariable>
 		<stateVariable>
-			<name>Settings</name>
+			<name>SmartSwitchIds</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
 			<dataType>string</dataType>
 		</stateVariable>
@@ -50,111 +55,6 @@
 			<argumentList>
 				<argument>
 					<name>SwitchId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-		<action>
-			<name>AddSensor</name>
-			<argumentList>
-				<argument>
-					<name>SwitchId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>SensorId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-		<action>
-			<name>RemoveSensor</name>
-			<argumentList>
-				<argument>
-					<name>SwitchId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>SensorId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-		<action>
-			<name>SetLevel</name>
-			<argumentList>
-				<argument>
-					<name>SwitchId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>NewLevel</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-		<action>
-			<name>SetOnLevel</name>
-			<argumentList>
-				<argument>
-					<name>SwitchId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>NewOnLevel</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-		<action>
-			<name>SetOffLevel</name>
-			<argumentList>
-				<argument>
-					<name>SwitchId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>NewOffLevel</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-		<action>
-			<name>SetAutoTimeout</name>
-			<argumentList>
-				<argument>
-					<name>SwitchId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>NewAutoTimeout</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-		<action>
-			<name>SetManualTimeout</name>
-			<argumentList>
-				<argument>
-					<name>SwitchId</name>
-					<direction>in</direction>
-					<relatedStateVariable>LogLevel</relatedStateVariable>
-				</argument>
-				<argument>
-					<name>NewManualTimeout</name>
 					<direction>in</direction>
 					<relatedStateVariable>LogLevel</relatedStateVariable>
 				</argument>

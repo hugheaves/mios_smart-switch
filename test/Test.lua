@@ -1,3 +1,20 @@
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "19"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "21"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "35"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "37"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "43"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "59"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "137"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "167"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "194"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "201"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "203"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "230"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "232"}, 237)
+luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSwitch", { SwitchId = "235"}, 237)
+
+
+
 -- living room
 luup.call_action("urn:hugheaves-com:serviceId:SmartSwitch1", "AddSensor", { SwitchId = "35", SensorId = "209"}, 237)
 

@@ -50,10 +50,10 @@
 			return require(moduleName)
 		end
 	
-		g_log = loadModule("L_SmartSwitch1_log")
-		g_util = loadModule("L_SmartSwitch1_util")
-		g_dkjson = loadModule("L_SmartSwitch1_dkjson")
-		g_core = loadModule("L_SmartSwitch1_core")
+		g_dkjson = loadModule("L_SmartSwitch_dkjson")
+		g_log = loadModule("L_SmartSwitch_log")
+		g_util = loadModule("L_SmartSwitch_util")
+		g_core = loadModule("L_SmartSwitch_core")
 		
 		function initialize(lul_device)
 			g_core.initialize(lul_device)
@@ -78,51 +78,59 @@
 			</run>
 		</action>
 		<action>
-			<serviceId>urn:hugheaves-com:serviceId:SmartSwitch1</serviceId>
+			<serviceId>urn:hugheaves-com:serviceId:SmartSwitchController1</serviceId>
+			<name>SetLevel</name>
+			<run>
+				return g_core.dispatchRun(lul_device, lul_settings,
+				"urn:hugheaves-com:serviceId:SmartSwitchController1", "SetLevel")
+			</run>
+		</action>
+		<action>
+			<serviceId>urn:hugheaves-com:serviceId:SmartSwitchController1</serviceId>
 			<name>AddSensor</name>
 			<run>
 				return g_core.dispatchRun(lul_device, lul_settings,
-				"urn:hugheaves-com:serviceId:SmartSwitch1", "AddSensor")
+				"urn:hugheaves-com:serviceId:SmartSwitchController1", "AddSensor")
 			</run>
 		</action>
 		<action>
-			<serviceId>urn:hugheaves-com:serviceId:SmartSwitch1</serviceId>
+			<serviceId>urn:hugheaves-com:serviceId:SmartSwitchController1</serviceId>
 			<name>RemoveSensor</name>
 			<run>
 				return g_core.dispatchRun(lul_device, lul_settings,
-				"urn:hugheaves-com:serviceId:SmartSwitch1", "RemoveSensor")
+				"urn:hugheaves-com:serviceId:SmartSwitchController1", "RemoveSensor")
 			</run>
 		</action>
 		<action>
-			<serviceId>urn:hugheaves-com:serviceId:SmartSwitch1</serviceId>
+			<serviceId>urn:hugheaves-com:serviceId:SmartSwitchController1</serviceId>
 			<name>SetOnLevel</name>
 			<run>
 				return g_core.dispatchRun(lul_device, lul_settings,
-				"urn:hugheaves-com:serviceId:SmartSwitch1", "SetOnLevel")
+				"urn:hugheaves-com:serviceId:SmartSwitchController1", "SetOnLevel")
 			</run>
 		</action>
 		<action>
-			<serviceId>urn:hugheaves-com:serviceId:SmartSwitch1</serviceId>
+			<serviceId>urn:hugheaves-com:serviceId:SmartSwitchController1</serviceId>
 			<name>SetOffLevel</name>
 			<run>
 				return g_core.dispatchRun(lul_device, lul_settings,
-				"urn:hugheaves-com:serviceId:SmartSwitch1", "SetOffLevel")
+				"urn:hugheaves-com:serviceId:SmartSwitchController1", "SetOffLevel")
 			</run>
 		</action>
 		<action>
-			<serviceId>urn:hugheaves-com:serviceId:SmartSwitch1</serviceId>
+			<serviceId>urn:hugheaves-com:serviceId:SmartSwitchController1</serviceId>
 			<name>SetAutoTimeout</name>
 			<run>
 				return g_core.dispatchRun(lul_device, lul_settings,
-				"urn:hugheaves-com:serviceId:SmartSwitch1", "SetAutoTimeout")
+				"urn:hugheaves-com:serviceId:SmartSwitchController1", "SetAutoTimeout")
 			</run>
 		</action>
 		<action>
-			<serviceId>urn:hugheaves-com:serviceId:SmartSwitch1</serviceId>
+			<serviceId>urn:hugheaves-com:serviceId:SmartSwitchController1</serviceId>
 			<name>SetManualTimeout</name>
 			<run>
 				return g_core.dispatchRun(lul_device, lul_settings,
-				"urn:hugheaves-com:serviceId:SmartSwitch1", "SetManualTimeout")
+				"urn:hugheaves-com:serviceId:SmartSwitchController1", "SetManualTimeout")
 			</run>
 		</action>
 	</actionList>

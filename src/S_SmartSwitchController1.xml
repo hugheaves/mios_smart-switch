@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!-- 
+ MiOS "Smart Switch" Plugin
+
+ Copyright (C) 2012  Hugh Eaves
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+	<specVersion>
+		<major>1</major>
+		<minor>0</minor>
+	</specVersion>
+	<serviceStateTable>
+		<stateVariable>
+			<name>DeviceId</name>
+			<sendEventsAttribute>no</sendEventsAttribute>
+			<dataType>ui1</dataType>
+		</stateVariable>
+		<stateVariable>
+			<name>CurrentLevel</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>ui1</dataType>
+		</stateVariable>
+		<stateVariable>
+			<name>OnLevel</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>ui1</dataType>
+		</stateVariable>
+		<stateVariable>
+			<name>OffLevel</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>ui1</dataType>
+		</stateVariable>
+		<stateVariable>
+			<name>AutoTimeout</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>ui2</dataType>
+		</stateVariable>
+		<stateVariable>
+			<name>ManualTimeout</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>ui2</dataType>
+		</stateVariable>
+		<stateVariable>
+			<name>SensorIds</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>string</dataType>
+		</stateVariable>
+	</serviceStateTable>
+	<actionList>
+		<action>
+			<name>AddSensor</name>
+			<argumentList>
+				<argument>
+					<name>SensorId</name>
+					<direction>in</direction>
+					<relatedStateVariable>SensorId</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+		<action>
+			<name>RemoveSensor</name>
+			<argumentList>
+				<argument>
+					<name>SensorId</name>
+					<direction>in</direction>
+					<relatedStateVariable>SensorId</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+		<action>
+			<name>SetLevel</name>
+			<argumentList>
+				<argument>
+					<name>NewLevel</name>
+					<direction>in</direction>
+					<relatedStateVariable>CurrentLevel</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+		<action>
+			<name>SetOnLevel</name>
+			<argumentList>
+				<argument>
+					<name>NewLevel</name>
+					<direction>in</direction>
+					<relatedStateVariable>OnLevel</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+		<action>
+			<name>SetOffLevel</name>
+			<argumentList>
+				<argument>
+					<name>NewLevel</name>
+					<direction>in</direction>
+					<relatedStateVariable>OffLevel</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+		<action>
+			<name>SetAutoTimeout</name>
+			<argumentList>
+				<argument>
+					<name>NewTimeout</name>
+					<direction>in</direction>
+					<relatedStateVariable>AutoTimeout</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+		<action>
+			<name>SetManualTimeout</name>
+			<argumentList>
+				<argument>
+					<name>NewTimeout</name>
+					<direction>in</direction>
+					<relatedStateVariable>ManualTimeout</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+	</actionList>
+</scpd>
