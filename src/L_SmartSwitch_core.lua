@@ -87,7 +87,7 @@ g_sensorState = {
 g_smartSwitchToSwitchMap = {}
 
 
--- Holds a stack of currently scheduled processTimeouts tasks scheduled by "call_delay" 
+-- Holds a stack of currently scheduled processTimeouts tasks scheduled by "call_delay"
 g_scheduledTimeouts = {}
 
 
@@ -121,7 +121,7 @@ local function setSwitchLevel(switchId, level)
 		g_switchState[switchId].Status = binaryLevel
 
 		lul_settings.newTargetValue = binaryLevel
-		
+
 		local lul_resultcode, lul_resultstring, lul_job, lul_returnarguments = luup.call_action(SID.SWITCH,
 		"SetTarget", lul_settings, tonumber(switchId))
 	end
@@ -137,7 +137,7 @@ end
 -- Figure out if we need a new call_delay to handle the newTimeout
 local function scheduleTimeout(newTimeout)
 	log.debug ("Scheduling new timeout for ", os.date(DATE_FORMAT,newTimeout))
-	
+
 	local currentTime = os.time()
 
 	-- cleanup expired timeouts
@@ -167,7 +167,7 @@ end
 
 local function updateSwitchTimeout(switchId)
 	log.debug ("updating timeout for switch ", switchId)
-	
+
 	local tripped = false
 	local smartSwitchId = g_switchState[switchId].smartSwitchId
 
@@ -194,9 +194,9 @@ local function updateSwitchTimeout(switchId)
 		if (newTimeout ~= math.huge) then
 			log.info ("Switch ", switchId, ": setting timeout to ", os.date(DATE_FORMAT, newTimeout), " ( manual = ", g_switchState[switchId].manual, ", auto = ", g_switchState[switchId].auto, " )")
 			g_switchState[switchId].timeout = newTimeout
-			scheduleTimeout (newTimeout)	
+			scheduleTimeout (newTimeout)
 		end
-		
+
 	end
 end
 
@@ -204,7 +204,7 @@ function processTimeouts (data)
 	log.info("Starting processTimeouts")
 	local nextTimeout = math.huge
 	local currentTime = os.time()
-	
+
 	for switchId, state in pairs(g_switchState) do
 		log.debug ("Switch ", switchId, " has a timeout set for ", os.date(DATE_FORMAT, state.timeout))
 		if (state.timeout <= currentTime) then
@@ -293,6 +293,9 @@ end
 ------------------------------------------
 -------- RUN / JOB HANDLERS --------------
 ------------------------------------------
+
+-- forward function declaration
+local syncChildDevices
 
 local function addSwitch(switchId)
 	log.debug ("switchId = ", switchId)
@@ -421,11 +424,11 @@ end
 
 local function sensorTripped(sensorId)
 	g_sensorState[sensorId].tripped = true
-		
+
 	for switchId in pairs(g_sensorState[sensorId].switches) do
-	
+
 		local autoTimeout = util.getLuupVariable(
-			SID.SMART_SWITCH_CONTROLLER, "AutoTimeout", g_switchState[switchId].smartSwitchId, util.T_NUMBER)
+		SID.SMART_SWITCH_CONTROLLER, "AutoTimeout", g_switchState[switchId].smartSwitchId, util.T_NUMBER)
 
 		-- only change to "auto" mode if we are not already in manual mode
 		-- and there is an autoTimeout set
@@ -480,48 +483,48 @@ function switchCallback(lul_device, lul_service, lul_variable, lul_value_old, lu
 	lul_value_old = tonumber(lul_value_old)
 	lul_value_new = tonumber(lul_value_new)
 
-    -- if this isn't a switch that we're controlling with the 
-    -- smart switch plugin, then return without doing anything
+	-- if this isn't a switch that we're controlling with the
+	-- smart switch plugin, then return without doing anything
 	if (not g_switchState[lul_device]) then
 		return
 	end
 
-	
-		if (lul_value_new ~= g_switchState[lul_device][lul_variable]) then
-		
-			log.debug ("received updated state in switch callback: ",
-			" newValue = ", lul_value_new,
-			", type(newValue) = ", type(lul_value_new),
-			", currentValue = ", g_switchState[lul_device][lul_variable],
-			", type(currentValue) = ", type(g_switchState[lul_device][lul_variable]))
-			
-			local manualTimeout = util.getLuupVariable(
-			SID.SMART_SWITCH_CONTROLLER, "ManualTimeout", g_switchState[lul_device].smartSwitchId, util.T_NUMBER)
-			
-			-- only change to "manual" mode if there is a manualTimeout set
-			if (manualTimeout > 0) then
-				g_switchState[lul_device].manual = true
-				g_switchState[lul_device].auto = false
-			end
-			
-			g_switchState[lul_device][lul_variable] = lul_value_new
-			
-			local smartSwitchId = g_switchState[lul_device].smartSwitchId
-			
-			if (lul_variable == "LoadLevelStatus") then
-				util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "CurrentLevel", lul_value_new, smartSwitchId)
-			elseif (lul_variable == "Status") then
-				if (lul_value_new == "0") then
-					util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "CurrentLevel", "0", smartSwitchId)
-				else
-					util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "CurrentLevel", "100", smartSwitchId)
-				end
-			end
-			
-			updateSwitchTimeout(lul_device)
-		else
-			log.debug ("received unchanged state in switch callback")
+
+	if (lul_value_new ~= g_switchState[lul_device][lul_variable]) then
+
+		log.debug ("received updated state in switch callback: ",
+		" newValue = ", lul_value_new,
+		", type(newValue) = ", type(lul_value_new),
+		", currentValue = ", g_switchState[lul_device][lul_variable],
+		", type(currentValue) = ", type(g_switchState[lul_device][lul_variable]))
+
+		local manualTimeout = util.getLuupVariable(
+		SID.SMART_SWITCH_CONTROLLER, "ManualTimeout", g_switchState[lul_device].smartSwitchId, util.T_NUMBER)
+
+		-- only change to "manual" mode if there is a manualTimeout set
+		if (manualTimeout > 0) then
+			g_switchState[lul_device].manual = true
+			g_switchState[lul_device].auto = false
 		end
+
+		g_switchState[lul_device][lul_variable] = lul_value_new
+
+		local smartSwitchId = g_switchState[lul_device].smartSwitchId
+
+		if (lul_variable == "LoadLevelStatus") then
+			util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "CurrentLevel", lul_value_new, smartSwitchId)
+		elseif (lul_variable == "Status") then
+			if (lul_value_new == "0") then
+				util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "CurrentLevel", "0", smartSwitchId)
+			else
+				util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "CurrentLevel", "100", smartSwitchId)
+			end
+		end
+
+		updateSwitchTimeout(lul_device)
+	else
+		log.debug ("received unchanged state in switch callback")
+	end
 end
 
 -----------------------------------
@@ -601,7 +604,7 @@ local function initSmartSwitches()
 end
 
 -- Synchronize the Smart Switch Controller devices
-local function syncChildDevices()
+syncChildDevices =  function ()
 	local switchIds = util.getLuupVariable(SID.SMART_SWITCH, "SwitchIds", g_deviceId, util.T_TABLE)
 	log.debug ("switchIds = ", switchIds)
 
@@ -634,7 +637,7 @@ local function initialize(lul_device)
 
 	-- set plugin version number
 	luup.variable_set(SID.SMART_SWITCH, "PluginVersion", PLUGIN_VERSION, g_deviceId)
-	
+
 	initLuupVariables()
 
 	syncChildDevices()
@@ -656,7 +659,4 @@ return {
 	initialize=initialize,
 	dispatchRun=dispatchRun
 }
-
-
-		
 		
