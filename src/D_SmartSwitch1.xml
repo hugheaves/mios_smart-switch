@@ -23,8 +23,7 @@
 		<minor>0</minor>
 	</specVersion>
 	<device>
-		<deviceType>urn:schemas-hugheaves-com:device:SmartSwitch:1
-		</deviceType>
+		<deviceType>urn:schemas-hugheaves-com:device:SmartSwitch:1</deviceType>
 		<handleChildren>1</handleChildren>
 		<friendlyName>Smart Switch</friendlyName>
 		<manufacturer>Hugh Eaves</manufacturer>
