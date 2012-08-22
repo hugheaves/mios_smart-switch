@@ -26,12 +26,7 @@
 		<stateVariable>
 			<name>DeviceId</name>
 			<sendEventsAttribute>no</sendEventsAttribute>
-			<dataType>ui1</dataType>
-		</stateVariable>
-		<stateVariable>
-			<name>CurrentLevel</name>
-			<sendEventsAttribute>yes</sendEventsAttribute>
-			<dataType>ui1</dataType>
+			<dataType>ui4</dataType>
 		</stateVariable>
 		<stateVariable>
 			<name>OnLevel</name>
@@ -46,17 +41,32 @@
 		<stateVariable>
 			<name>AutoTimeout</name>
 			<sendEventsAttribute>yes</sendEventsAttribute>
-			<dataType>ui2</dataType>
+			<dataType>ui4</dataType>
 		</stateVariable>
 		<stateVariable>
 			<name>ManualTimeout</name>
 			<sendEventsAttribute>yes</sendEventsAttribute>
-			<dataType>ui2</dataType>
+			<dataType>ui4</dataType>
 		</stateVariable>
 		<stateVariable>
 			<name>SensorIds</name>
 			<sendEventsAttribute>yes</sendEventsAttribute>
 			<dataType>string</dataType>
+		</stateVariable>
+		<stateVariable>
+			<name>Mode</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>string</dataType>
+		</stateVariable>
+		<stateVariable>
+			<name>Timeout</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>string</dataType>
+		</stateVariable>
+		<stateVariable>
+			<name>Level</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>ui1</dataType>
 		</stateVariable>
 	</serviceStateTable>
 	<actionList>

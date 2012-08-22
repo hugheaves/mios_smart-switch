@@ -1,5 +1,5 @@
 {
-    "flashicon": "http://www.hugheaves.com/vera/resources/smart-switch/0.1/smart-switch-icon-50x50.png",
+    "flashicon":"http://www.hugheaves.com/vera/resources/smart-switch/0.2/smart-switch-icon-50x50.png",
     "x":"6",
     "y":"12",
     "inScene":"1",
@@ -128,10 +128,10 @@
                     "x":2,
                     "text_align":"left",
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0
+                        "Top":5,
+                        "Left":20,
+                        "Width":200,
+                        "Height":20
                     }
                 },
                 {
@@ -146,10 +146,10 @@
                     "x":2,
                     "text_align":"left",
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0
+                        "Top":75,
+                        "Left":20,
+                        "Width":200,
+                        "Height":20
                     }
                 },
                 {
@@ -164,10 +164,10 @@
                     "x":2,
                     "text_align":"left",
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0
+                        "Top":145,
+                        "Left":20,
+                        "Width":200,
+                        "Height":20
                     }
                 },
                 {
@@ -182,10 +182,10 @@
                     "x":2,
                     "text_align":"left",
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0
+                        "Top":215,
+                        "Left":20,
+                        "Width":80,
+                        "Height":20
                     }
                 },
                 {
@@ -198,10 +198,10 @@
                         "text":"Off"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":20,
+                        "Left":20,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"0"
@@ -227,10 +227,10 @@
                         "text":"5%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":20,
+                        "Left":110,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"5"
@@ -256,10 +256,10 @@
                         "text":"10%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":20,
+                        "Left":200,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"10"
@@ -285,10 +285,10 @@
                         "text":"20%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":20,
+                        "Left":290,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"20"
@@ -314,10 +314,10 @@
                         "text":"30%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":20,
+                        "Left":380,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"30"
@@ -343,10 +343,10 @@
                         "text":"40%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":20,
+                        "Left":470,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"40"
@@ -372,10 +372,10 @@
                         "text":"50%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":45,
+                        "Left":20,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"50"
@@ -401,10 +401,10 @@
                         "text":"60%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":45,
+                        "Left":110,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"60"
@@ -430,10 +430,10 @@
                         "text":"70%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":45,
+                        "Left":200,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"70"
@@ -459,10 +459,10 @@
                         "text":"80%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":45,
+                        "Left":290,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"80"
@@ -488,10 +488,10 @@
                         "text":"90%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":45,
+                        "Left":380,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"90"
@@ -517,10 +517,10 @@
                         "text":"On"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":45,
+                        "Left":470,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OnLevel",
                         "Value":"100"
@@ -546,10 +546,10 @@
                         "text":"Off"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":90,
+                        "Left":20,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"0"
@@ -575,10 +575,10 @@
                         "text":"5%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":90,
+                        "Left":110,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"5"
@@ -604,10 +604,10 @@
                         "text":"10%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":90,
+                        "Left":200,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"10"
@@ -633,10 +633,10 @@
                         "text":"20%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":90,
+                        "Left":290,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"20"
@@ -662,10 +662,10 @@
                         "text":"30%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":90,
+                        "Left":380,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"30"
@@ -691,10 +691,10 @@
                         "text":"40%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":90,
+                        "Left":470,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"40"
@@ -720,10 +720,10 @@
                         "text":"50%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":115,
+                        "Left":20,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"50"
@@ -749,10 +749,10 @@
                         "text":"60%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":115,
+                        "Left":110,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"60"
@@ -778,10 +778,10 @@
                         "text":"70%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":115,
+                        "Left":200,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"70"
@@ -807,10 +807,10 @@
                         "text":"80%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":115,
+                        "Left":290,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"80"
@@ -836,10 +836,10 @@
                         "text":"90%"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":115,
+                        "Left":380,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"90"
@@ -865,10 +865,10 @@
                         "text":"On"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":115,
+                        "Left":470,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"OffLevel",
                         "Value":"100"
@@ -894,10 +894,10 @@
                         "text":"None"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":160,
+                        "Left":20,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"0"
@@ -923,10 +923,10 @@
                         "text":"30s"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":160,
+                        "Left":110,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"30"
@@ -952,10 +952,10 @@
                         "text":"1m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":160,
+                        "Left":200,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"60"
@@ -981,10 +981,10 @@
                         "text":"2m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":160,
+                        "Left":290,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"120"
@@ -1010,10 +1010,10 @@
                         "text":"5m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":160,
+                        "Left":380,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"300"
@@ -1039,10 +1039,10 @@
                         "text":"15m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":160,
+                        "Left":470,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"900"
@@ -1068,10 +1068,10 @@
                         "text":"30m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":185,
+                        "Left":20,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"1800"
@@ -1097,10 +1097,10 @@
                         "text":"1h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":185,
+                        "Left":110,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"3600"
@@ -1126,10 +1126,10 @@
                         "text":"2h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":185,
+                        "Left":200,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"7200"
@@ -1155,10 +1155,10 @@
                         "text":"6h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":185,
+                        "Left":290,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"21600"
@@ -1184,10 +1184,10 @@
                         "text":"12h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":185,
+                        "Left":380,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"43200"
@@ -1213,10 +1213,10 @@
                         "text":"24h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":185,
+                        "Left":470,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
                         "Value":"86400"
@@ -1242,10 +1242,10 @@
                         "text":"None"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":230,
+                        "Left":20,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"0"
@@ -1271,10 +1271,10 @@
                         "text":"30s"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":230,
+                        "Left":110,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"30"
@@ -1300,10 +1300,10 @@
                         "text":"1m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":230,
+                        "Left":200,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"60"
@@ -1329,10 +1329,10 @@
                         "text":"2m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":230,
+                        "Left":290,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"120"
@@ -1358,10 +1358,10 @@
                         "text":"5m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":230,
+                        "Left":380,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"300"
@@ -1387,10 +1387,10 @@
                         "text":"15m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":230,
+                        "Left":470,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"900"
@@ -1416,10 +1416,10 @@
                         "text":"30m"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":255,
+                        "Left":20,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"1800"
@@ -1445,10 +1445,10 @@
                         "text":"1h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":255,
+                        "Left":110,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"3600"
@@ -1474,10 +1474,10 @@
                         "text":"2h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":255,
+                        "Left":200,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"7200"
@@ -1503,10 +1503,10 @@
                         "text":"6h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":255,
+                        "Left":290,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"21600"
@@ -1532,10 +1532,10 @@
                         "text":"12h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":255,
+                        "Left":380,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"43200"
@@ -1561,10 +1561,10 @@
                         "text":"24h"
                     },
                     "Display":{
-                        "Top":555,
-                        "Left":0,
-                        "Width":0,
-                        "Height":0,
+                        "Top":255,
+                        "Left":470,
+                        "Width":80,
+                        "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
                         "Value":"86400"
@@ -1579,66 +1579,8 @@
                             }
                         ]
                     }
-                },
-				{
-					"ControlType": "label",
-					"Label": {
-						"lang_tag": "sensor_id",
-						"text": "Enter the ID of the sensor to add:"
-					},
-					"text_align": "left",
-					"Display": {
-						"Top": 20,
-						"Left": 20,
-						"Width": 150,
-						"Height": 20
-					}
-				},
-				{
-					"ControlType": "input",
-					"ID": "SensorId",
-					"Display": {
-						"Top": 20,
-						"Left": 200,
-						"Width": 30,
-						"Height": 20 
-					} 
-				},
-				{
-					"ControlType": "button",
-					"Label": {
-						"lang_tag": "add_sensor",
-						"text": "Add Sensor"
-					},
-					"Display": {
-						"Top": 20,
-						"Left": 250,
-						"Width": 90,
-						"Height": 20
-					},
-					"Command": {
-						"Service": "urn:hugheaves-com:serviceId:SmartSwitchController1",
-						"Action": "AddSensor",
-						"Parameters": [
-							{
-								"Name": "SensorId",
-								"ID": "SensorId"
-							}
-						]
-					}
-				},
-				{
-					"ControlType": "variable",
-					"Display": {
-						"Service": "urn:hugheaves-com:serviceId:SmartSwitchController1",
-						"Variable": "StatusText",
-						"Top": 50,
-						"Left": 20,
-						"Width": 600,
-						"Height": 600
-					}
-				}           
-			]
+                }
+            ]
         },
         {
             "Label":{
@@ -1646,9 +1588,106 @@
                 "text":"Settings"
             },
             "Position":"1",
-            "TabType":"javascript",
-            "ScriptName":"shared.js",
-            "Function":"simple_device"
+            "TabType":"flash",
+            "SceneGroup":[
+                {
+                    "id":1,
+                    "top":1,
+                    "left":1,
+                    "x":1,
+                    "y":1
+                }
+            ],
+            "ControlGroup":[
+                {
+                    "id":1,
+                    "scenegroup":1,
+                    "isSingle":1
+                }
+            ],
+            "Control":[
+                {
+                    "ControlType":"label",
+                    "Label":{
+                        "lang_tag":"id_label",
+                        "text":"Enter the sensor device id:"
+                    },
+                    "text_align":"left",
+                    "Display":{
+                        "Top":20,
+                        "Left":20,
+                        "Width":200,
+                        "Height":20
+                    }
+                },
+                {
+                    "ControlType":"input",
+                    "ID":"SensorId",
+                    "Display":{
+                        "Top":20,
+                        "Left":200,
+                        "Width":30,
+                        "Height":20
+                    }
+                },
+                {
+                    "ControlType":"button",
+                    "Label":{
+                        "lang_tag":"add_sensor",
+                        "text":"Add Sensor"
+                    },
+                    "Display":{
+                        "Top":20,
+                        "Left":250,
+                        "Width":90,
+                        "Height":20
+                    },
+                    "Command":{
+                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
+                        "Action":"AddSensor",
+                        "Parameters":[
+                            {
+                                "Name":"SensorId",
+                                "ID":"SensorId"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "ControlType":"button",
+                    "Label":{
+                        "lang_tag":"remove_sensor",
+                        "text":"Remove Sensor"
+                    },
+                    "Display":{
+                        "Top":20,
+                        "Left":350,
+                        "Width":120,
+                        "Height":20
+                    },
+                    "Command":{
+                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
+                        "Action":"RemoveSensor",
+                        "Parameters":[
+                            {
+                                "Name":"SensorId",
+                                "ID":"SensorId"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "ControlType":"variable",
+                    "Display":{
+                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
+                        "Variable":"StatusText",
+                        "Top":70,
+                        "Left":20,
+                        "Width":600,
+                        "Height":600
+                    }
+                }
+            ]
         },
         {
             "Label":{

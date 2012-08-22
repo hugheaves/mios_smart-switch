@@ -22,7 +22,7 @@
 		<protocol>raw</protocol>
 	</settings>
 	<functions>
-		local lfs = require("lfs")
+<!-- 		local lfs = require("lfs")
 
 		function loadModule(moduleName)
 			local srcFile = "/etc/cmh-ludl/" .. moduleName .. ".lua.lzo"
@@ -48,12 +48,12 @@
 			end
 	
 			return require(moduleName)
-		end
+		end -->
 	
-		g_dkjson = loadModule("L_SmartSwitch_dkjson")
-		g_log = loadModule("L_SmartSwitch_log")
-		g_util = loadModule("L_SmartSwitch_util")
-		g_core = loadModule("L_SmartSwitch_core")
+		g_dkjson = require("L_SmartSwitch_dkjson")
+		g_log = require("L_SmartSwitch_log")
+		g_util = require("L_SmartSwitch_util")
+		g_core = require("L_SmartSwitch_core")
 		
 		function initialize(lul_device)
 			g_core.initialize(lul_device)
