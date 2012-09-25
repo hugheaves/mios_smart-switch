@@ -1,5 +1,5 @@
 {
-    "flashicon":"http://www.hugheaves.com/vera/resources/smart-switch/0.3/smart-switch-icon-50x50.png",
+    "flashicon":"http://www.hugheaves.com/vera/resources/smart-switch/0.4/smart-switch-icon-50x50.png",
     "inScene":"0",
     "DisplayStatus":{
         
@@ -41,7 +41,7 @@
                     "ControlType":"label",
                     "Label":{
                         "lang_tag":"plugin_version",
-                        "text":"Plugin version:"
+                        "text":"Plugin version: 0.4"
                     },
                     "top":2,
                     "left":0,
@@ -61,7 +61,7 @@
                     "left":1,
                     "Display":{
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitch1",
-                        "Variable":"PluginVersion",
+                        "Variable":"PluginVersion_NOTWORKING",
                         "Top":20,
                         "Left":140,
                         "Width":60,

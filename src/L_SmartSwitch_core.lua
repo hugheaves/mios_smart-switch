@@ -28,7 +28,7 @@ local util = g_util
 -- CONSTANTS
 
 -- Plug-in version
-local PLUGIN_VERSION = "0.3"
+local PLUGIN_VERSION = "0.4"
 local LOG_PREFIX = "SmartSwitch"
 local DATE_FORMAT = "%m/%d/%y %H:%M:%S"
 
@@ -259,7 +259,9 @@ end
 ---------- MISC FUNCTIONS -----------
 -------------------------------------
 local function updatePluginStatusText()
-	local statusText = "Switches controlled by this plugin:<br>" ..
+	local statusText = 
+	"<b>NOTE: After adding a switch, you will need to close and reopen this settings dialog to see it in the list below.</b><br/><br/>" ..
+	"Switches controlled by this plugin:<br>" ..
 	"<table><thead>" ..
 	"<tr><th>Id</th><th>Name</th><th>Sensor Name / Id(s)</th></tr></thead><tbody>"
 	for switchId, data in pairs(g_switches) do
@@ -280,7 +282,9 @@ end
 local function updateSmartSwitchStatusText(smartSwitchId)
 	local switchId = g_smartSwitches[smartSwitchId].switchId
 	log.debug ("switchId = ", switchId, ", smartSwitchId = ", smartSwitchId)
-	local statusText = "Sensors controlling this switch:<br>" ..
+	local statusText =
+	"<b>NOTE: After adding a sensor, you will need to close and reopen this settings dialog to see it in the list below.</b><br/><br/>" ..
+	"Sensors controlling this switch:<br>" ..
 	"<table><thead>"..
 	"<tr><th>Id</th><th>Name</th></tr></thead><tbody>"
 	for sensorId, status in pairs(g_switches[switchId].sensors) do
