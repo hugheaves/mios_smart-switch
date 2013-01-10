@@ -1582,113 +1582,16 @@
                 }
             ]
         },
-        {
-            "Label":{
-                "lang_tag":"settings",
-                "text":"Settings"
+		{
+			"Label": {
+                "lang_tag": "settings",
+                "text": "Settings"
             },
-            "Position":"1",
-            "TabType":"flash",
-            "SceneGroup":[
-                {
-                    "id":1,
-                    "top":1,
-                    "left":1,
-                    "x":1,
-                    "y":1
-                }
-            ],
-            "ControlGroup":[
-                {
-                    "id":1,
-                    "scenegroup":1,
-                    "isSingle":1
-                }
-            ],
-            "Control":[
-                {
-                    "ControlType":"label",
-                    "Label":{
-                        "lang_tag":"id_label",
-                        "text":"Enter the sensor device id:"
-                    },
-                    "text_align":"left",
-                    "Display":{
-                        "Top":20,
-                        "Left":20,
-                        "Width":200,
-                        "Height":20
-                    }
-                },
-                {
-                    "ControlType":"input",
-                    "ID":"SensorId",
-                    "Display":{
-                        "Top":20,
-                        "Left":200,
-                        "Width":30,
-                        "Height":20
-                    }
-                },
-                {
-                    "ControlType":"button",
-                    "Label":{
-                        "lang_tag":"add_sensor",
-                        "text":"Add Sensor"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":250,
-                        "Width":90,
-                        "Height":20
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"AddSensor",
-                        "Parameters":[
-                            {
-                                "Name":"SensorId",
-                                "ID":"SensorId"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlType":"button",
-                    "Label":{
-                        "lang_tag":"remove_sensor",
-                        "text":"Remove Sensor"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":350,
-                        "Width":120,
-                        "Height":20
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"RemoveSensor",
-                        "Parameters":[
-                            {
-                                "Name":"SensorId",
-                                "ID":"SensorId"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlType":"variable",
-                    "Display":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"StatusText",
-                        "Top":70,
-                        "Left":20,
-                        "Width":600,
-                        "Height":600
-                    }
-                }
-            ]
-        },
+            "Position": "1",
+            "TabType": "javascript",
+            "ScriptName": "J_SmartSwitchController1.js",
+            "Function": "ssc_showSettings"
+		},
         {
             "Label":{
                 "lang_tag":"advanced",

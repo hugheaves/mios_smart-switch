@@ -71,26 +71,6 @@
 	</serviceStateTable>
 	<actionList>
 		<action>
-			<name>AddSensor</name>
-			<argumentList>
-				<argument>
-					<name>SensorId</name>
-					<direction>in</direction>
-					<relatedStateVariable>SensorId</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-		<action>
-			<name>RemoveSensor</name>
-			<argumentList>
-				<argument>
-					<name>SensorId</name>
-					<direction>in</direction>
-					<relatedStateVariable>SensorId</relatedStateVariable>
-				</argument>
-			</argumentList>
-		</action>
-		<action>
 			<name>SetLevel</name>
 			<argumentList>
 				<argument>

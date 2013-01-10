@@ -1,5 +1,5 @@
 {
-    "flashicon":"http://www.hugheaves.com/vera/resources/smart-switch/0.4/smart-switch-icon-50x50.png",
+    "flashicon":"http://www.hugheaves.com/vera/resources/smart-switch/0.7/smart-switch-icon-50x50.png",
     "inScene":"0",
     "DisplayStatus":{
         
@@ -41,7 +41,7 @@
                     "ControlType":"label",
                     "Label":{
                         "lang_tag":"plugin_version",
-                        "text":"Plugin version: 0.4"
+                        "text":"Plugin version:"
                     },
                     "top":2,
                     "left":0,
@@ -61,122 +61,25 @@
                     "left":1,
                     "Display":{
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitch1",
-                        "Variable":"PluginVersion_NOTWORKING",
+                        "Variable":"PluginVersion",
                         "Top":20,
                         "Left":140,
                         "Width":60,
                         "Height":20
                     }
                 }
-            ]            
-        },
-        {
-            "Label":{
-                "lang_tag":"settings",
-                "text":"Settings"
-            },
-            "Position":"1",
-            "TabType":"flash",
-            "SceneGroup":[
-                {
-                    "id":1,
-                    "top":1,
-                    "left":1,
-                    "x":1,
-                    "y":1
-                }
-            ],
-            "ControlGroup":[
-                {
-                    "id":1,
-                    "scenegroup":1,
-                    "isSingle":1
-                }
-            ],
-            "Control":[
-                {
-                    "ControlType":"label",
-                    "Label":{
-                        "lang_tag":"id_label",
-                        "text":"Enter the switch device id:"
-                    },
-                    "text_align":"left",
-                    "Display":{
-                        "Top":20,
-                        "Left":20,
-                        "Width":200,
-                        "Height":20
-                    }
-                },
-                {
-                    "ControlType":"input",
-                    "ID":"SwitchId",
-                    "Display":{
-                        "Top":20,
-                        "Left":200,
-                        "Width":30,
-                        "Height":20
-                    }
-                },
-                {
-                    "ControlType":"button",
-                    "Label":{
-                        "lang_tag":"add_switch",
-                        "text":"Add Switch"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":250,
-                        "Width":90,
-                        "Height":20
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitch1",
-                        "Action":"AddSwitch",
-                        "Parameters":[
-                            {
-                                "Name":"SwitchId",
-                                "ID":"SwitchId"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlType":"button",
-                    "Label":{
-                        "lang_tag":"remove_switch",
-                        "text":"Remove Switch"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":350,
-                        "Width":120,
-                        "Height":20
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitch1",
-                        "Action":"RemoveSwitch",
-                        "Parameters":[
-                            {
-                                "Name":"SwitchId",
-                                "ID":"SwitchId"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlType":"variable",
-                    "Display":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitch1",
-                        "Variable":"StatusText",
-                        "Top":70,
-                        "Left":20,
-                        "Width":600,
-                        "Height":600
-                    }
-                }
             ]
         },
+		{
+			"Label": {
+                "lang_tag": "settings",
+                "text": "Settings"
+            },
+            "Position": "1",
+            "TabType": "javascript",
+            "ScriptName": "J_SmartSwitch1.js",
+            "Function": "ss_showSettings"
+		},        
         {
             "Label":{
                 "lang_tag":"advanced",
