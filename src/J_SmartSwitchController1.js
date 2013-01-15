@@ -80,7 +80,11 @@ function ssc_getDeviceIdsSetting() {
 
 	deviceIdsJSON = deviceIdsJSON.replace(/'/g, '\"');
 
-	return (JSON.parse(deviceIdsJSON));
+	if (deviceIdsJSON == "") {
+		return ([]);
+	} else {
+		return (JSON.parse(deviceIdsJSON));
+	}
 }
 
 function ssc_setDeviceIdsSetting(deviceIds) {

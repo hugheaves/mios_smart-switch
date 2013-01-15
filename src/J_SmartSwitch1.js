@@ -82,12 +82,16 @@ function ss_removeUsedDevices(devices) {
 }
 
 function ss_getDeviceIdsSetting() {
-	var deviceIdsJSON = get_device_state(ss_deviceId, ss_settingSid,
-			ss_settingVar, 0);
+	var deviceIdsJSON = get_device_state(ssc_deviceId, ssc_settingSid,
+			ssc_settingVar, 0);
 
 	deviceIdsJSON = deviceIdsJSON.replace(/'/g, '\"');
 
-	return (JSON.parse(deviceIdsJSON));
+	if (deviceIdsJSON == "") {
+		return ([]);
+	} else {
+		return (JSON.parse(deviceIdsJSON));
+	}
 }
 
 function ss_setDeviceIdsSetting(deviceIds) {
