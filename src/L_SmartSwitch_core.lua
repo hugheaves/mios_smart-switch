@@ -28,7 +28,7 @@ local util = g_util
 -- CONSTANTS
 
 -- Plug-in version
-local PLUGIN_VERSION = "0.8"
+local PLUGIN_VERSION = "0.9"
 local LOG_PREFIX = "SmartSwitch"
 local DATE_FORMAT = "%m/%d/%y %H:%M:%S"
 

@@ -1,5 +1,5 @@
 {
-    "flashicon":"http://www.hugheaves.com/vera/resources/smart-switch/0.8/smart-switch-icon-50x50.png",
+    "flashicon":"http://www.hugheaves.com/vera/resources/smart-switch/0.9/smart-switch-icon-50x50.png",
     "inScene":"0",
     "DisplayStatus":{
         
@@ -117,3 +117,4 @@
     ],
     "DeviceType":"urn:schemas-hugheaves-com:device:SmartSwitch:1"
 }
+

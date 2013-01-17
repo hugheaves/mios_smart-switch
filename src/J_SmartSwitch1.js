@@ -67,7 +67,7 @@ function ss_findDevices(sid1, sid2) {
 }
 
 function ss_removeUsedDevices(devices) {
-	var deviceIds = ssc_getDeviceIdsSetting();
+	var deviceIds = ss_getDeviceIdsSetting();
 	var newDevices = [];
 	
 	for ( var i = 0; i < devices.length; ++i) {
@@ -82,8 +82,8 @@ function ss_removeUsedDevices(devices) {
 }
 
 function ss_getDeviceIdsSetting() {
-	var deviceIdsJSON = get_device_state(ssc_deviceId, ssc_settingSid,
-			ssc_settingVar, 0);
+	var deviceIdsJSON = get_device_state(ss_deviceId, ss_settingSid,
+			ss_settingVar, 0);
 
 	deviceIdsJSON = deviceIdsJSON.replace(/'/g, '\"');
 
