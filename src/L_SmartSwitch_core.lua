@@ -28,7 +28,7 @@ local util = g_util
 -- CONSTANTS
 
 -- Plug-in version
-local PLUGIN_VERSION = "0.9"
+local PLUGIN_VERSION = "1.0"
 local LOG_PREFIX = "SmartSwitch"
 local DATE_FORMAT = "%m/%d/%y %H:%M:%S"
 
@@ -352,7 +352,7 @@ end
 
 local function sensorTripped(sensorId)
 	log.info ("Sensor tripped, deviceId = ", sensorId);
-	
+
 	for switchId in pairs(g_sensors[sensorId].switches) do
 		local smartSwitchId = g_switches[switchId].smartSwitchId
 		local autoTimeout = util.getLuupVariable(
@@ -360,17 +360,17 @@ local function sensorTripped(sensorId)
 		local currentMode = util.getLuupVariable(
 		SID.SMART_SWITCH_CONTROLLER, "Mode",smartSwitchId, util.T_STRING)
 
-		-- only change to "auto" mode if we are not already in manual mode
-		-- and there is an autoTimeout value
+		-- only change to "AUTO" mode if the switch is "OFF" and there is an autoTimeout value
 		if (currentMode == MODE.OFF and autoTimeout > 0) then
 			setSwitchLevel(switchId, util.getLuupVariable(
 			SID.SMART_SWITCH_CONTROLLER, "OnLevel", smartSwitchId, util.T_NUMBER))
 			util.setLuupVariable(
 			SID.SMART_SWITCH_CONTROLLER, "Mode", MODE.AUTO, smartSwitchId)
-		elseif (currentMode == MODE.AUTO) then  -- if we are already in auto mode, clear the current timeout
-			util.setLuupVariable(
-			SID.SMART_SWITCH_CONTROLLER, "Timeout", NO_TIMEOUT, smartSwitchId)
 		end
+
+		-- clear the current timeout
+		util.setLuupVariable(
+		SID.SMART_SWITCH_CONTROLLER, "Timeout", NO_TIMEOUT, smartSwitchId)
 
 	end
 end
@@ -425,7 +425,7 @@ function switchCallback(lul_device, lul_service, lul_variable, lul_value_old, lu
 
 	local newLevel = convertSwitchLevel(lul_variable, lul_value_new)
 
-    -- Check to see if this is a switch that we recognize / care about
+	-- Check to see if this is a switch that we recognize / care about
 	if (g_switches[lul_device]) then
 		local smartSwitchId = g_switches[lul_device].smartSwitchId
 
@@ -441,13 +441,13 @@ function switchCallback(lul_device, lul_service, lul_variable, lul_value_old, lu
 			log.debug ("received unchanged state in switch callback")
 		end
 	end
-	
+
 	-- if this switch is registered as a "sensor", process accordingly
-	if (g_sensors[lul_device]) then 
+	if (g_sensors[lul_device]) then
 		if (newLevel > 0) then
-			sensorTripped(lul_device)		
+			sensorTripped(lul_device)
 		else
-			sensorReset(lul_device)		
+			sensorReset(lul_device)
 		end
 	end
 end
