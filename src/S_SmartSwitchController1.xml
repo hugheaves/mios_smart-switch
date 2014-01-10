@@ -68,6 +68,11 @@
 			<sendEventsAttribute>yes</sendEventsAttribute>
 			<dataType>ui1</dataType>
 		</stateVariable>
+		<stateVariable>
+			<name>RememberManualLevel</name>
+			<sendEventsAttribute>yes</sendEventsAttribute>
+			<dataType>boolean</dataType>
+		</stateVariable>
 	</serviceStateTable>
 	<actionList>
 		<action>
@@ -117,6 +122,16 @@
 					<name>NewTimeout</name>
 					<direction>in</direction>
 					<relatedStateVariable>ManualTimeout</relatedStateVariable>
+				</argument>
+			</argumentList>
+		</action>
+		<action>
+			<name>SetRememberManualLevel</name>
+			<argumentList>
+				<argument>
+					<name>NewRememberManualLevel</name>
+					<direction>in</direction>
+					<relatedStateVariable>RememberManualLevel</relatedStateVariable>
 				</argument>
 			</argumentList>
 		</action>

@@ -1,6 +1,6 @@
 -- MiOS "Smart Switch" Plugin
 --
--- Copyright (C) 2012  Hugh Eaves
+-- Copyright (C) 2013  Hugh Eaves
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ local util = g_util
 -- CONSTANTS
 
 -- Plug-in version
-local PLUGIN_VERSION = "1.0"
+local PLUGIN_VERSION = "1.1"
 local LOG_PREFIX = "SmartSwitch"
 local DATE_FORMAT = "%m/%d/%y %H:%M:%S"
 
@@ -108,6 +108,7 @@ local function setSwitchLevel(switchId, level)
 
 	local smartSwitchId = g_switches[tonumber(switchId)].smartSwitchId
 
+	-- If the target device is a dimmer
 	if (luup.device_supports_service(SID.DIMMER, tonumber(switchId))) then
 		lul_settings.newLoadlevelTarget = level
 
@@ -116,6 +117,7 @@ local function setSwitchLevel(switchId, level)
 		lul_resultcode, lul_resultstring, lul_job, lul_returnarguments = luup.call_action(SID.DIMMER,
 		"SetLoadLevelTarget", lul_settings, tonumber(switchId))
 
+		-- else, if the target device is a binary switch
 	elseif (luup.device_supports_service(SID.SWITCH, tonumber(switchId))) then
 		if (level == 0) then
 			lul_settings.newTargetValue = 0
@@ -130,11 +132,48 @@ local function setSwitchLevel(switchId, level)
 	end
 end
 
+-- Sets the light level of the switch to match the current OnLevel/OffLevel
+local function updateSwitchLevel(smartSwitchId)
+	log.info ("Updating Switch Level: smartSwitchId = ", smartSwitchId)
+
+	local currentMode = util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "Mode", smartSwitchId, util.T_STRING)
+	local switchId = g_smartSwitches[smartSwitchId].switchId
+
+	if (currentMode == MODE.AUTO) then
+		setSwitchLevel(switchId, util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "OnLevel", smartSwitchId, util.T_NUMBER))
+	elseif (currentMode == MODE.OFF) then
+		setSwitchLevel(switchId, util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "OffLevel", smartSwitchId, util.T_NUMBER))
+	end
+end
+
 ----------------------------------------------
 ------ TIMEOUT SCHEDULING / HANDLING ---------
 ----------------------------------------------
 
--- Figure out if we need a new call_delay to handle the newTimeout
+
+--[[
+
+This scheduleTimeout function is called to schedule a callback that will send
+the "turn off" command to a switch when the specified "newTimeout"
+(point in time) occurs.
+
+Whenever motion is detected by a sensor tied to a smart switch, this function
+is called to update the timeout value for that switch. As there may be many
+active devices and sensors scheduling timeouts, and Luup does not provide a way
+to reschedule or cancel existing callbacks, system performance necessitates
+minimizing the number of new callbacks scheduled by this function.
+
+To minimize the number of new callbacks, this function always checks to see
+if there is an existing callback that will occur before the "newTimeout". It
+will only schedule a new callback if there is not an existing callback that
+occurs first. The later callback is not needed as the callback will check the
+timeouts for all devices when called, and will schedule new timeouts for any
+devices that have not yet "timed out".
+
+Confused yet? This is basically just a very complicated way to work around Luup's
+crappy timer based callback functionality! :)
+
+]]
 local function scheduleTimeout(newTimeout)
 	log.debug ("Scheduling new timeout for ", os.date(DATE_FORMAT,newTimeout))
 
@@ -165,12 +204,18 @@ local function scheduleTimeout(newTimeout)
 	end
 end
 
+-- This function is called any time an event occurs that may require
+-- calculating a new timeout for a switch. This includes sensor resets,
+-- manual activations, or adjustment of the timeout settings for
+-- a particular switch.
 local function updateSwitchTimeout(switchId)
 	log.debug ("updating timeout for switch ", switchId)
 
 	local tripped = false
 	local smartSwitchId = g_switches[switchId].smartSwitchId
 
+	-- Check to see if any of the sensors that control this switch are in "tripped" state.
+	-- If so, we don't need to do anything with the timeout value.
 	for sensorId, status in pairs(g_switches[switchId].sensors)  do
 		if (util.getLuupVariable(SID.SECURITY_SENSOR, "Tripped", tonumber(sensorId), util.T_BOOLEAN)) then
 			tripped = true
@@ -182,7 +227,6 @@ local function updateSwitchTimeout(switchId)
 	else
 		local currentTime = os.time()
 		local newTimeout = NO_TIMEOUT
-		local varName
 		local currentMode = util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "Mode", smartSwitchId, util.T_STRING)
 		if (currentMode == MODE.AUTO) then
 			newTimeout = currentTime + util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "AutoTimeout", smartSwitchId, util.T_NUMBER)
@@ -200,6 +244,11 @@ local function updateSwitchTimeout(switchId)
 	end
 end
 
+-- This is the luup.call_delay callback function that is scheduled
+-- by the scheduleTimeout() function. It checks to see if any switches
+-- have "timed out" and need to be turned back off. If there are switches
+-- have not timed out, this function will schedule a new timeout
+-- callback for the next occurring timeout.
 function processTimeouts (data)
 	log.info("Starting processTimeouts")
 	local nextTimeout = NO_TIMEOUT
@@ -261,10 +310,12 @@ end
 
 local function setOnLevel(smartSwitchId, level)
 	util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "OnLevel", level, smartSwitchId)
+	updateSwitchLevel(smartSwitchId)
 end
 
 local function setOffLevel(smartSwitchId, level)
 	util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "OffLevel", level, smartSwitchId)
+	updateSwitchLevel(smartSwitchId)
 end
 
 local function setAutoTimeout(smartSwitchId, timeout)
@@ -287,6 +338,10 @@ local function setLevel(smartSwitchId, level)
 	updateSwitchTimeout(switchId)
 end
 
+local function setRememberManualLevel(smartSwitchId, rememberManualLevel)
+	util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "RememberManualLevel", rememberManualLevel, smartSwitchId)
+end
+
 -- function to handle UPnP api calls
 local function dispatchRun(lul_device, lul_settings, serviceId, action)
 	log.info ("Entering dispatchRun, lul_device = ", lul_device, ", serviceId = " , serviceId , ", action = " , action ,
@@ -306,6 +361,8 @@ local function dispatchRun(lul_device, lul_settings, serviceId, action)
 			setAutoTimeout(lul_device, tonumber(lul_settings.NewTimeout))
 		elseif (action == "SetManualTimeout") then
 			setManualTimeout(lul_device, tonumber(lul_settings.NewTimeout))
+		elseif (action == "SetRememberManualLevel") then
+			setRememberManualLevel(lul_device, toboolean(lul_settings.NewRememberManualLevel))
 		else
 			log.error("Unrecognized job request")
 		end
@@ -346,6 +403,10 @@ local function recordManualActivation(smartSwitchId, newLevel)
 
 	util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "Level", newLevel, smartSwitchId)
 
+	if (util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "RememberManualLevel", smartSwitchId, util.T_BOOLEAN)) then
+		util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "OnLevel", newLevel, smartSwitchId)
+	end
+
 	updateSwitchTimeout(switchId)
 end
 
@@ -383,9 +444,11 @@ local function sensorReset(sensorId)
 	end
 end
 
---------------------------------------
--------- CALLBACK HANDLERS -----------
---------------------------------------
+------------------------------------------------------
+-------- VARIABLE WATCH CALLBACK HANDLERS ------------
+------------------------------------------------------
+
+-- These callback functions listen for changes in the state of the "target" devices
 
 function sensorCallback(lul_device, lul_service, lul_variable, lul_value_old, lul_value_new)
 	log.debug("sensorCallback: lul_device = ", lul_device, ", type(lul_device) = ", type(lul_device),
@@ -419,7 +482,8 @@ function switchCallback(lul_device, lul_service, lul_variable, lul_value_old, lu
 	local lul_device = tonumber(lul_device)
 
 	-- If this is a dimmer, ignore "Status" (we look at LoadLevelStatus instead)
-	if (lul_variable == "Status" and luup.device_supports_service(SID.DIMMER, switchId)) then
+	if (lul_variable == "Status" and luup.device_supports_service(SID.DIMMER, lul_device)) then
+		log.debug("Ignoring change in Status for dimmer")
 		return
 	end
 
@@ -431,10 +495,10 @@ function switchCallback(lul_device, lul_service, lul_variable, lul_value_old, lu
 
 		local currentLevel = util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "Level", smartSwitchId, util.T_NUMBER)
 
-		-- Got level in switch callback that doesn't match our current level.
+		-- Check to see if we received a level in the callback that doesn't match our current level.
 		if (newLevel ~= nil and newLevel ~= currentLevel) then
 			log.info ("Received manual override for switch: switchId = ", lul_device, ", smartSwitchId = ", smartSwitchId,
-			"currentLevel = ", currentLevel, " , newLevel = ", newLevel)
+			", currentLevel = ", currentLevel, " , newLevel = ", newLevel)
 
 			recordManualActivation(smartSwitchId, newLevel)
 		else
@@ -470,7 +534,8 @@ local function getDefaultParameters()
 	SID.SMART_SWITCH_CONTROLLER..",OffLevel=0\n"..
 	SID.SMART_SWITCH_CONTROLLER..",AutoTimeout=300\n"..
 	SID.SMART_SWITCH_CONTROLLER..",ManualTimeout=1800\n"..
-	SID.SMART_SWITCH_CONTROLLER..",SensorIds=[]"
+	SID.SMART_SWITCH_CONTROLLER..",SensorIds=[]\n"..
+	SID.SMART_SWITCH_CONTROLLER..",RememberManualLevel=0"
 end
 
 local function initSwitchState(switchId, smartSwitchId)
