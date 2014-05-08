@@ -22,10 +22,6 @@
 		<protocol>raw</protocol>
 	</settings>
 	<functions>
-	
-		g_dkjson = require("L_SmartSwitch_dkjson")
-		g_log = require("L_SmartSwitch_log")
-		g_util = require("L_SmartSwitch_util")
 		g_core = require("L_SmartSwitch_core")
 		
 		function initialize(lul_device)
