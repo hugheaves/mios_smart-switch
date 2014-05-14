@@ -1,31 +1,23 @@
 <?xml version="1.0"?>
-<!-- 
- MiOS "Smart Switch" Plugin
-
- Copyright (C) 2012  Hugh Eaves
-
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
+<!-- MiOS "Smart Switch" Plugin Copyright (C) 2012 Hugh Eaves This program 
+	is free software: you can redistribute it and/or modify it under the terms 
+	of the GNU General Public License as published by the Free Software Foundation, 
+	either version 3 of the License, or (at your option) any later version. This 
+	program is distributed in the hope that it will be useful, but WITHOUT ANY 
+	WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+	FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
+	You should have received a copy of the GNU General Public License along with 
+	this program. If not, see <http://www.gnu.org/licenses/>. -->
 <implementation>
 	<settings>
 		<protocol>raw</protocol>
 	</settings>
 	<functions>
-		g_core = require("L_SmartSwitch_core")
-		
+		g_pluginName = "SmartSwitch"
+		g_core = require("L_" .. g_pluginName .. "_" .. "core")
+
 		function initialize(lul_device)
-			g_core.initialize(lul_device)
+		g_core.initialize(lul_device)
 		end
 	</functions>
 	<startup>initialize</startup>
@@ -67,7 +59,8 @@
 			<name>RemoveSensor</name>
 			<run>
 				return g_core.dispatchRun(lul_device, lul_settings,
-				"urn:hugheaves-com:serviceId:SmartSwitchController1", "RemoveSensor")
+				"urn:hugheaves-com:serviceId:SmartSwitchController1",
+				"RemoveSensor")
 			</run>
 		</action>
 		<action>
@@ -91,7 +84,8 @@
 			<name>SetAutoTimeout</name>
 			<run>
 				return g_core.dispatchRun(lul_device, lul_settings,
-				"urn:hugheaves-com:serviceId:SmartSwitchController1", "SetAutoTimeout")
+				"urn:hugheaves-com:serviceId:SmartSwitchController1",
+				"SetAutoTimeout")
 			</run>
 		</action>
 		<action>
@@ -99,7 +93,8 @@
 			<name>SetManualTimeout</name>
 			<run>
 				return g_core.dispatchRun(lul_device, lul_settings,
-				"urn:hugheaves-com:serviceId:SmartSwitchController1", "SetManualTimeout")
+				"urn:hugheaves-com:serviceId:SmartSwitchController1",
+				"SetManualTimeout")
 			</run>
 		</action>
 	</actionList>

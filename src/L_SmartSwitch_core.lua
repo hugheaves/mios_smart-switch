@@ -58,7 +58,8 @@ local SID = {
   SMART_SWITCH = "urn:hugheaves-com:serviceId:SmartSwitch1",
   SMART_SWITCH_CONTROLLER = "urn:hugheaves-com:serviceId:SmartSwitchController1",
   SECURITY_SENSOR = "urn:micasaverde-com:serviceId:SecuritySensor1",
-  ZWAVE_DEVICE = "urn:micasaverde-com:serviceId:ZWaveDevice1"
+  ZWAVE_DEVICE = "urn:micasaverde-com:serviceId:ZWaveDevice1",
+  HA_DEVICE = "urn:micasaverde-com:serviceId:HaDevice1"
 }
 
 local DID_SMART_SWITCH_CONTROLLER = "urn:schemas-hugheaves-com:device:SmartSwitchController:1"
@@ -118,10 +119,8 @@ local function setSwitchLevel(switchId, level)
 
   local smartSwitchId = g_switches[tonumber(switchId)].smartSwitchId
 
-  log.debug("Supports service")
   -- If the target device is a dimmer
   if (luup.device_supports_service(SID.DIMMER, tonumber(switchId))) then
-    log.debug("Supports service 2")
     lul_settings.newLoadlevelTarget = level
 
     util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "Level", level, smartSwitchId)
@@ -131,7 +130,6 @@ local function setSwitchLevel(switchId, level)
 
     -- else, if the target device is a binary switch
   elseif (luup.device_supports_service(SID.SWITCH, tonumber(switchId))) then
-    log.debug("Supports service 3")
     if (level == 0) then
       lul_settings.newTargetValue = 0
       util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "Level", "0", smartSwitchId)
@@ -143,7 +141,7 @@ local function setSwitchLevel(switchId, level)
     local lul_resultcode, lul_resultstring, lul_job, lul_returnarguments = luup.call_action(SID.SWITCH,
       "SetTarget", lul_settings, tonumber(switchId))
   end
-  
+
   log.debug("Returning")
 end
 
@@ -177,26 +175,53 @@ end
 ------ TIMEOUT SCHEDULING / HANDLING ---------
 ----------------------------------------------
 --
-local function getWakeupTime(currentTime, smartSwitchId)
+local function checkSwitch(currentTime, smartSwitchId)
   local switchId = g_smartSwitches[smartSwitchId].switchId
-  local wakeupTime = util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "Timeout", smartSwitchId, util.T_NUMBER)
+  local timeout = util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "Timeout", smartSwitchId, util.T_NUMBER)
+  local nextWakeup = timeout
 
-  -- if the target switch is a Z-wave device, then check to see if we should poll
-  -- the device for its current status
-  if (luup.device_supports_service(SID.ZWAVE_DEVICE, tonumber(switchId))) then
-    -- if the timeout for the current switch is within PRE_TIMEOUT_POLL_DELAY seconds of
-    -- the current time, then check to see if we need to poll the switch
-    if ((timeout - PRE_TIMEOUT_POLL_DELAY) <= currentTime) then
-      local lastPollTime = util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "LastPollTime", smartSwitchId, util.T_NUMBER)
+  log.debugValues ("Current switch timeout", "smartSwitchId",smartSwitchId, "timeout", os.date(DATE_FORMAT, timeout))
 
-      luup.call_action("urn:micasaverde-com:serviceId:HaDevice1", "Poll", {}, currentDevice)
+  -- if the timeout has expired for this switch (i.e. timeout is before currentTime), then turn it off
+  if (timeout <= currentTime) then
+
+    log.infoValues("Timeout has expired, turning off switch", "smartSwitchId", smartSwitchId, "switchId", switchId)
+
+    turnOffSwitch(smartSwitchId)
+
+  elseif (timeout ~= FAR_FUTURE_TIME) then
+    -- else, if the switch hasn't yet timed out
+
+    -- handle scheduling a "pre-timeout" poll for Z-wave devices
+    if (luup.device_supports_service(SID.ZWAVE_DEVICE, tonumber(switchId))) then
+
+      -- calculate when we should be polling the switch
+      local pollTime = timeout - PRE_TIMEOUT_POLL_DELAY
+
+      -- if pollTime has arrived (or passed), then check if we have already polled the switch recently
+      if (pollTime <= currentTime) then
+        local lastPollTime = util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "LastPollTime", smartSwitchId, util.T_NUMBER)
+        if (currentTime - lastPollTime > PRE_TIMEOUT_POLL_DELAY) then
+          log.debugValues("Polling switch before timeout", "timeout", timeout, "pollTime", pollTime, "lastPollTime", lastPollTime , "currentTime", currentTime)
+          luup.call_action(SID.HA_DEVICE, "Poll", {}, switchId)
+          util.setLuupVariable(SID.SMART_SWITCH_CONTROLLER, "LastPollTime", currentTime, smartSwitchId)
+        else
+          log.debugValues("Switch poll not needed", "timeout", timeout, "pollTime", pollTime, "lastPollTime", lastPollTime , "currentTime", currentTime)
+        end
+      else
+        -- as pollTime has not arrived yet, schedule next wakeup at pollTime
+        nextWakeup = pollTime
+        log.debugValues("pollTime has not arrived, scheduling wakeup at pollTime", "timeout", timeout, "pollTime", pollTime , "currentTime", currentTime)
+      end
+
+
+    else
+      log.debugValues("target switch is not a ZWave device, scheduling wakeup at normal timeout", "timeout", timeout, "currentTime", currentTime)
+
     end
-  else
-
-
   end
 
-  return wakeupTime
+  return nextWakeup
 end
 
 -- Find the next (earliest) scheduled call time in the g_scheduledCalls table
@@ -343,26 +368,10 @@ function checkSwitches (data)
     -- get the device id for this smart switch
     local smartSwitchId = state.smartSwitchId
 
-    -- get the timeout value for this switch
-    local timeout = util.getLuupVariable(SID.SMART_SWITCH_CONTROLLER, "Timeout", smartSwitchId, util.T_NUMBER)
-
-    log.debugValues ("Current switch timeout", "smartSwitchId",smartSwitchId, "timeout", os.date(DATE_FORMAT, timeout))
-
-    -- if the timeout has expired for this switch (i.e. timeout is before currentTime), then turn it off
-    if (timeout <= currentTime) then
-
-      log.infoValues("Timeout has expired", "smartSwitchId", smartSwitchId)
-
-      turnOffSwitch(smartSwitchId)
-
-    else
-      -- handle switches that haven't yet timed out
-
-      local wakeupTime = getWakeupTime(currentTime, smartSwitchId)
-      -- keep track of the earliest timeout of all switches that haven't timed out
-      if (wakeupTime < nextWakeupTime) then
-        nextWakeupTime = wakeupTime
-      end
+    local wakeupTime = checkSwitch(currentTime, smartSwitchId)
+    -- keep track of the earliest timeout of all switches that haven't timed out
+    if (wakeupTime < nextWakeupTime) then
+      nextWakeupTime = wakeupTime
     end
   end
 
@@ -567,7 +576,7 @@ function sensorCallback(lul_device, lul_service, lul_variable, lul_value_old, lu
 end
 
 function switchCallback(lul_device, lul_service, lul_variable, lul_value_old, lul_value_new)
-  log.debugValues("switchCallback", "lul_device", lul_device, "type(lul_device)", type(lul_device),
+  log.debugValues("switchCallback", "lul_device", lul_device,
     "lul_service", lul_service,
     "lul_variable", lul_variable,
     "lul_value_old", lul_value_old,
